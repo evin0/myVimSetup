@@ -11,6 +11,7 @@
 :set ignorecase
 :set smartcase
 
+:set ruler
 :set number
 ":set relativenumber
 
@@ -35,6 +36,11 @@ let &t_ti.="\e[1 q"
 let &t_SI.="\e[5 q"
 let &t_EI.="\e[1 q"
 let &t_te.="\e[0 q"
+
+" Should open on last position now. Found on https://askubuntu.com/questions/202075/how-do-i-get-vim-to-remember-the-line-i-was-on-when-i-reopen-a-file
+if has("autocmd")
+  au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
+endif
 
 "Comments found @ https://www.vim.org/scripts/script.php?script_id=1528
 
